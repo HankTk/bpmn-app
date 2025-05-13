@@ -1,9 +1,21 @@
-<h1>Angular BPMN</h1>
+<h1>
+  Angular BPMN
+  <div class="controls">
+    <input type="file" 
+           accept=".bpmn" 
+           (change)="loadLocalFile($event)" 
+           style="display: none" 
+           #fileInput>
+    <button (click)="fileInput.click()">Load Diagram</button>
+    <button (click)="saveDiagram()">Save Diagram</button>
+  </div>
+</h1>
 
 <div class="diagram-parent">
   <app-diagram
    [url]="diagramUrl"
-   (importDone)="handleImported($event)">
+   (importDone)="handleImported($event)"
+   #diagram>
   </app-diagram>
 
   <div class="import-error" *ngIf="importError">

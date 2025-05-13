@@ -100,7 +100,18 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy,
    *
    * @see https://github.com/bpmn-io/bpmn-js-callbacks-to-promises#importxml
    */
-  private importDiagram(xml: string): Observable<{warnings: Array<any>}> {
+  importDiagram(xml: string): Observable<{warnings: Array<any>}> {
     return from(this.bpmnJS.importXML(xml) as Promise<{warnings: Array<any>}>);
+  }
+
+  /**
+   * Save the current diagram as XML
+   */
+  async saveXML(): Promise<string> {
+    const result = await this.bpmnJS.saveXML({
+      format: true,
+      preamble: true
+    });
+    return result.xml;
   }
 }
