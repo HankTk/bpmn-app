@@ -1,0 +1,37 @@
+.diagram-parent {
+  height: calc(100vh - 77px); /* 57px = header height (1rem padding top/bottom + line-height) */
+  width: 100%;
+  border: solid 3px #EEE;
+  position: relative;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.import-error {
+  color: red;
+  padding: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Reset default margins */
+:host {
+  display: block;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  margin: 0;
+  padding: 1rem;
+  background: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+  height: 57px; /* Explicitly set header height */
+  box-sizing: border-box;
+  line-height: 1.2;
+}
