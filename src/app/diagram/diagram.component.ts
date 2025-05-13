@@ -28,6 +28,7 @@ import { from, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-diagram',
+  standalone: true,
   templateUrl: './diagram.component.html',
   styleUrls: ['./diagram.component.scss']
 })

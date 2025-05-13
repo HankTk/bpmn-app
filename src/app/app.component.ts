@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
+import { DiagramComponent } from './diagram/diagram.component';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  imports: [DiagramComponent]
 })
 export class AppComponent {
   title = 'bpmn-js-angular';

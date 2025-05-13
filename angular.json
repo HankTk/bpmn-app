@@ -9,7 +9,7 @@
       "projectType": "application",
       "prefix": "app",
       "schematics": {},
-      "architect": {
+      "targets": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
@@ -68,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "bpmn-js-angular:build"
+            "buildTarget": "bpmn-js-angular:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "bpmn-js-angular:build:production"
+              "buildTarget": "bpmn-js-angular:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "bpmn-js-angular:build"
+            "buildTarget": "bpmn-js-angular:build"
           }
         },
         "test": {
@@ -114,16 +114,16 @@
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
-      "architect": {
+      "targets": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "bpmn-js-angular:serve"
+            "serveTarget": "bpmn-js-angular:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "bpmn-js-angular:serve:production"
+              "serveTarget": "bpmn-js-angular:serve:production"
             }
           }
         }
@@ -133,16 +133,16 @@
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
-      "architect": {
+      "targets": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor-ci.conf.js",
-            "devServerTarget": "bpmn-js-angular:serve"
+            "serveTarget": "bpmn-js-angular:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "bpmn-js-angular:serve:production"
+              "serveTarget": "bpmn-js-angular:serve:production"
             }
           }
         }
