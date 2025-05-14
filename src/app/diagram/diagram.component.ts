@@ -1,5 +1,4 @@
 import {
-  AfterContentInit,
   Component,
   ElementRef,
   Input,
@@ -32,7 +31,7 @@ import { from, Observable, Subscription } from 'rxjs';
   templateUrl: './diagram.component.html',
   styleUrls: ['./diagram.component.scss']
 })
-export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy, OnInit {
+export class DiagramComponent implements OnChanges, OnDestroy, OnInit {
 
   @ViewChild('ref', { static: true }) private el: ElementRef;
   @Input() private url?: string;
@@ -42,16 +41,20 @@ export class DiagramComponent implements AfterContentInit, OnChanges, OnDestroy,
   constructor(private http: HttpClient) {
     this.bpmnJS.on('import.done', ({ error }) => {
       if (!error) {
-        this.bpmnJS.get('canvas').zoom('fit-viewport');
+        // Defer zoom to allow canvas/container to stabilize dimensions
+        setTimeout(() => {
+          const canvas = this.bpmnJS.get('canvas');
+          // Explicitly center the content when fitting to viewport
+          canvas.zoom('fit-viewport', 'center');
+        }, 0);
       }
     });
   }
 
-  ngAfterContentInit(): void {
-    this.bpmnJS.attachTo(this.el.nativeElement);
-  }
-
   ngOnInit(): void {
+    // Ensure BpmnJS is attached to the DOM element first
+    this.bpmnJS.attachTo(this.el.nativeElement);
+
     if (this.url) {
       this.loadUrl(this.url);
     }
